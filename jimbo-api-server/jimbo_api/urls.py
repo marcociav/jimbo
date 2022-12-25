@@ -5,8 +5,8 @@ app_name = 'jimbo_api'
 
 urlpatterns = [
     # workouts
-    path('<int:pk>/', WorkoutDetail.as_view(), name='detailcreate'),
-    path('', WorkoutList.as_view(), name='listcreate')
+    path('<int:pk>/', WorkoutDetail.as_view(), name='workoutdetail'),
+    path('', WorkoutList.as_view(), name='workoutlistcreate')
 
     # days
 

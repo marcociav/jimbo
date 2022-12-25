@@ -30,3 +30,11 @@ to create superuser:
 ```
 python manage.py createsuperuser
 ```
+to run tests
+```
+coverage run --omit='*/jimbo_api_venv/*' manage.py test
+```
+to generate html test coverage
+```
+coverage html
+```
