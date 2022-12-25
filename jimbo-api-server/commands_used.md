@@ -26,3 +26,7 @@ to migrate models to db:
 ```
 python manage.py migrate
 ```
+to create superuser:
+```
+python manage.py createsuperuser
+```

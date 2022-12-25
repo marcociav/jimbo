@@ -15,6 +15,9 @@ class Workout(models.Model):
     # foreign keys
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='workout')
 
+    # manager
+    objects = models.Manager()
+
     class Meta:
         ordering = ('-published',)
 
@@ -35,6 +38,9 @@ class Day(models.Model):
     # foreign keys
     workout = models.ForeignKey(Workout, on_delete=models.CASCADE, related_name='day')
 
+    # manager
+    objects = models.Manager()
+
     class Meta:
         ordering = ('-published',)
 
@@ -50,6 +56,9 @@ class Section(models.Model):
     # foreign keys
     day = models.ForeignKey(Day, on_delete=models.CASCADE, related_name='section')
     workout = models.ForeignKey(Workout, on_delete=models.CASCADE, related_name='section')
+
+    # manager
+    objects = models.Manager()
 
     def __str__(self):
         return self.title
@@ -79,6 +88,9 @@ class Exercise(models.Model):
     section = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='exercise', null=True)
     workout = models.ForeignKey(Workout, on_delete=models.CASCADE, related_name='exercise')
 
+    # manager
+    objects = models.Manager()
+
     class Meta:
         ordering = ('order',)
 
@@ -89,6 +101,9 @@ class Exercise(models.Model):
 class Muscle(models.Model):
     name = models.CharField(max_length=250)
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE, related_name='muscles')
+
+    # manager
+    objects = models.Manager()
 
     def __str__(self):
         return self.name
