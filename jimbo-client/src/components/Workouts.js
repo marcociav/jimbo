@@ -44,6 +44,10 @@ const Workouts = (props) => {
 			<Container maxWidth="md" component="main">
 				<Grid container spacing={5} alignItems="flex-end">
 					{workouts.map((workout) => {
+                        const titleTrunc = 50;
+                        const descriptionTrunc = 200
+                        const workoutTitle = workout.title.length < titleTrunc ? workout.title : workout.title.substr(0, titleTrunc - 3) + '...';
+                        const workoutDesc = workout.description.length < descriptionTrunc ? workout.description : workout.description.substr(0, descriptionTrunc - 3) + '...';
 						return (
 							// Enterprise card is full width at sm breakpoint
 							<Grid item key={workout.id} xs={12} md={4}>
@@ -60,7 +64,7 @@ const Workouts = (props) => {
 											component="h2"
 											className={classes.workoutTitle}
 										>
-											{workout.title.substr(0, 50)}...
+											{workoutTitle}
 										</Typography>
 										<div className={classes.workoutText}>
 											<Typography
@@ -68,7 +72,7 @@ const Workouts = (props) => {
 												color="textPrimary"
 											></Typography>
 											<Typography variant="p" color="textSecondary">
-												{workout.description.substr(0, 60)}...
+												{workoutDesc}
 											</Typography>
 										</div>
 									</CardContent>
