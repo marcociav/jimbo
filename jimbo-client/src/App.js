@@ -1,25 +1,31 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import logo from './logo.svg';
+import Workouts from './components/Workouts';
+import WorkoutsLoading from './components/WorkoutsLoading'
+
 
 function App() {
+  const WorkoutsComponent = WorkoutsLoading(Workouts);
+  const [appState, setAppState] = useState({
+    loading: false,
+    workouts: null,
+  });
+  useEffect(() => {
+    setAppState({ loading: true});
+    const apiUrl = 'http://127.0.0.1:8000/api/';
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((workouts) => {
+        setAppState({ loading: false, workouts: workouts })
+      });
+  }, [setAppState]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Your Workouts</h1>
+      <WorkoutsComponent isLoading={appState.loading} workouts={appState.workouts}/>
     </div>
-  );
+  )
 }
 
 export default App;
