@@ -8,6 +8,7 @@ class Workout(models.Model):
     title = models.CharField(max_length=250)
     description = models.CharField(max_length=4000, null=True)
     public = models.BooleanField()
+    # TODO: create like system?
 
     # meta info
     slug = models.SlugField(max_length=250, unique_for_date='published')

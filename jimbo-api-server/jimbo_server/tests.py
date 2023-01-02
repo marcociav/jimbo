@@ -10,6 +10,7 @@ class TestCreatePost(TestCase):
         cls.test_workout = Workout.objects.create(
             title='Test Workout',
             description='Test Description',
+            public=False,
             slug='test-workout',
             user_id=cls.test_user.id
         )
@@ -20,10 +21,12 @@ class TestCreatePost(TestCase):
         user = str(workout.user)
         title = str(workout.title)
         description = str(workout.description)
+        public = workout.public
         slug = str(workout.slug)
 
         self.assertEqual(user, 'test_user')
         self.assertEqual(title, 'Test Workout')
+        self.assertEqual(public, False)
         self.assertEqual(description, 'Test Description')
         self.assertEqual(slug, 'test-workout')
 

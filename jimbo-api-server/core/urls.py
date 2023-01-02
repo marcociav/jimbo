@@ -20,5 +20,6 @@ from django.urls import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('jimbo_server.urls', namespace='jimbo_server')),
-    path('api/', include('jimbo_api.urls', namespace='jimbo_api'))
+    path('api/', include('jimbo_api.urls', namespace='jimbo_api')),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
